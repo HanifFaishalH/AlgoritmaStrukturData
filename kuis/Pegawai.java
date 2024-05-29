@@ -5,10 +5,10 @@ public class Pegawai {
     public int masaKerjaThn, gajiPokok;
     public double jamLembur;
     
-    public Pegawai(String namPeg, int masKer,int gaPok){
-        namPeg = nama;
-        masKer = masaKerjaThn;
-        gaPok = gajiPokok;
+    public Pegawai(String nama, int masaKerjaThn,int gajiPokok){
+        this.nama = nama;
+        this.masaKerjaThn = masaKerjaThn;
+        this.gajiPokok = gajiPokok;
     }
     public double hitungGajiLembur (double gajiPokok){
         if (masaKerjaThn < 5) {
@@ -31,11 +31,12 @@ public class Pegawai {
     }
 
     public void printData(){
-        System.out.println("Nama : "+nama);
-        System.out.println("Gaji Pokok : "+gajiPokok);
-        System.out.println("Gaji Lembur "+hitungGajiLembur(gajiPokok));
-        System.out.println("Tunjangan : "+hitungTunjangan(gajiPokok));
-        System.out.println("Total : "+hitungGajiTotal());
+            System.out.println("Nama : "+nama);
+            System.out.println("Gaji Pokok : "+gajiPokok);
+            System.out.println("Gaji Lembur "+hitungGajiLembur(gajiPokok));
+            System.out.println("Tunjangan : "+hitungTunjangan(gajiPokok));
+            System.out.println("Total : "+hitungGajiTotal());
+            
     }
 
     public static void main(String[] args) {
@@ -48,19 +49,29 @@ public class Pegawai {
 
         for (int i = 0; i < pegawai.length; i++) {
             System.out.println("Nama pegawai ke - "+(i+1));
-            String namPeg = input.next();
+            String nama = input.next();
 
             System.out.println("Gaji Pokok pegawai ke - "+(i+1));
-            int gaPok = input.nextInt();
+            int gajiPokok = input.nextInt();
 
             System.out.println("Masa kerja pegawai ke -"+(i+1));
-            int masKer = input.nextInt();
+            int masaKerjaThn = input.nextInt();
 
-            pegawai[i] = new Pegawai(namPeg, masKer, gaPok);
+            pegawai[i] = new Pegawai(nama, masaKerjaThn, gajiPokok);
         }
         for (int i = 0; i < pegawai.length; i++) {
             pegawai[i].printData();
         }
+        Pegawai gajiTerbesar = pegawai[0];
+
+        for (int i = 1; i < pegawai.length; i++) {
+            if (pegawai[i].hitungGajiTotal() > gajiTerbesar.hitungGajiTotal()) {
+            gajiTerbesar = pegawai[i];
+            }
+        }
+
+        System.out.println("Pegawai dengan gaji terbesar:");
+        gajiTerbesar.printData();
         // for (int i = 0; i < pegawai.length; i++) {
         //     Pegawai gajiTerbesar = pegawai[i];
         //     if (pegawai[i+1] >= gajiTerbesar) {
